@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+commandOutput="$(service radiusd restart)"
+statusCommandOutput="$(service radiusd status)"
+if [[ "$statusCommandOutput" =~ "is running" ]]; then
+  serviceStatus="ok"
+  commandStatus="Success"
+else
+  serviceStatus="down"
+  commandStatus="Error"
+fi
+
+
+echo '{"serviceStatus":"'"$serviceStatus"'", "commandStatus":"'"$commandStatus"'", "commandOutput":"'"$commandOutput"'"}'
+

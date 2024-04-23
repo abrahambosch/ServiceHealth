@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+echo '{"serviceStatus":"ok", "commandStatus":"Success"}'
+#echo '{"serviceStatus":"down", "commandStatus":"Success"}'

@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+commandOutput="$(service supervisor restart)"
+statusCommandOutput="$(service supervisor status)"
+if [[ "$statusCommandOutput" =~ "is running" ]]; then
+  serviceStatus="ok"
+  commandStatus="Success"
+else
+  serviceStatus="down"
+  commandStatus="Error"
+fi
+
+
+echo '{"serviceStatus":"'"$serviceStatus"'", "commandStatus":"'"$commandStatus"'", "commandOutput":"'"$commandOutput"'"}'
+

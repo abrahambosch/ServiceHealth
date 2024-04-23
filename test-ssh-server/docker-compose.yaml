@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+  sshserver:
+    platform: ${PLATFORM}
+    build:
+      context: ${PROJECT_PATH}/server/test-ssh-server
+      dockerfile: Dockerfile
+    container_name: ssh-server
+    ports:
+      - 2222:22
+    tty: true
+    volumes:
+      - ${PROJECT_PATH}/server/test-ssh-server/bin:/opt/admin/jenkins/bin
+      #- ~/.ssh:/root/.ssh # can be useful for composer if you use private CVS
+      # external links for wisp core
+      #external_links:
+      # - wisp:api-local.pacwisp.net
+      # - payments:api-local-payments.pacwisp.net
+      # - accounts:api-local-accounts.pacwisp.net
+
+
+  # Settings from /var/www/server/paymentproxy/conf/config.ini
+  #  host     = mariadb-server
+  #  username = webuser
+  #  password = webuserpass
+  #  name     = paymentproxy
+
+
+
+#  mariadb-server:
+#    platform: ${PLATFORM}
+#    image: mysql:5.7
+#    restart: unless-stopped
+#    ports:
+#      - ${DB_PORT}:3306
+#    environment:
+#      MYSQL_DATABASE: ${DB_DATABASE}
+#      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+#      MYSQL_PASSWORD: ${DB_PASSWORD}
+#      MYSQL_USER: ${DB_USERNAME}
+#      SERVICE_TAGS: dev
+#      SERVICE_NAME: mysql
+#    volumes:
+#      - ./mysql:/docker-entrypoint-initdb.d
+#      - ./:/project_home
+#      - app_mysql:/var/lib/mysql
+#
+#volumes:
+#  app_mysql:
+#
+#networks:
+#  default:
+#    external:
+#      name: nginx-proxy

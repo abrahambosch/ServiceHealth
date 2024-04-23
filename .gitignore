@@ -1,0 +1,13 @@
+.idea
+.env
+
+
+server/config.json
+server/users.json
+server/.env
+server/node_modules
+server/dist
+
+
+client/node_modules
+client/build

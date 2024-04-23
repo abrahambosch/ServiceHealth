@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+commandOutput="$(service mysqld stop)"
+statusCommandOutput="$(service mysqld status)"
+if [[ "$statusCommandOutput" =~ "is running" ]]; then
+  serviceStatus="ok"
+  commandStatus="Error"
+else
+  serviceStatus="down"
+  commandStatus="Success"
+fi
+
+echo '{"serviceStatus":"'"$serviceStatus"'", "commandStatus":"'"$commandStatus"'", "commandOutput":"'"$commandOutput"'"}'
+

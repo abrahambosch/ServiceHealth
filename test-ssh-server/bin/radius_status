@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+echo '{"serviceStatus":"ok", "commandStatus":"Success", "commandOutput":""}'
+#echo '{"serviceStatus":"down", "commandStatus":"Success", "commandOutput":""}'
+exit
+
+statusCommandOutput="$(service radiusd status)"
+if [[ "$statusCommandOutput" =~ "is running" ]]; then
+  serviceStatus="ok"
+else
+  serviceStatus="down"
+fi
+commandStatus="Success"
+commandOutput="$statusCommandOutput"
+
+echo '{"serviceStatus":"'"$serviceStatus"'", "commandStatus":"'"$commandStatus"'", "commandOutput":"'"$commandOutput"'"}'
