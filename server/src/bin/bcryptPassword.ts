@@ -17,8 +17,8 @@ const main = async () => {
     const username = await askQuestion("Enter username? ");
     const roles = await askQuestion("Enter roles as a comma delimited list. \nExample for Superuser: user,admin,super\nExample for admin user: user,admin\nExample for regular user: user)\nRoles: ");
     const rawPassword = await askQuestion("Enter password? ");
-    const password = bcrypt.hash(rawPassword, saltRounds)
-    console.log({displayName, username, roles, password});
+    const password = await bcrypt.hash(rawPassword, saltRounds)
+    console.log(JSON.stringify({displayName, username, roles, password}));
 }
 
 main().finally(() => {

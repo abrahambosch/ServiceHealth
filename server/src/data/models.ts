@@ -178,121 +178,21 @@ export const CommandExecutionSchema = object({
 export type CommandExecution = InferType<typeof CommandExecutionSchema>;
 
 
-/////////////////////
-// Interfaces
-/////////////////////
-//
-// export interface ServerGroup {
-//     name: string;
-//     hosts: Host[];
-// }
-//
-// export interface Host {
-//     name: string;
-//     services: Service[];
-// }
-//
-//
-// export interface Service {
-//     name: string;
-//     serviceType: string;
-//     status: ServiceStatus;
-//     commands: Command[];
-// }
-//
-//
-// export enum ServiceStatus {
-//     unknown = "unknown",
-//     ok = "ok",
-//     hostTimeout = "hostTimeout",
-//     down = "down",
-//     yellow = "yellow",
-//     red = "red",
-//     errorRetrieving = "errorRetrieving",
-//     unmappedStatus = "unmappedStatus",
-//     invalidJsonReturned = "invalidJsonReturned",
-// }
-//
-//
 
-//
-//
-// export enum CommandType {
-//     statusCommand = "statusCommand",
-//     restartCommand = "restartCommand",
-//     startCommand = "startCommand",
-//     stopCommand = "stopCommand",
-//     customCommand = "customCommand",
-// }
-//
-//
-//
-//
-// export interface Command {
-//     name: string;
-//     type: CommandType;
-//     command: string; // example: /opt/admin/jenkins/bin/apache_status
-//     role: Role;
-//     // SSH into the  server. run shell command.
-// }
-//
-//
-//
-//
-// export enum CommandStatus {
-//     Ready = "Ready",
-//     Running = "Running",
-//     Success = "Success",
-//     Error = "Error",
-// }
-//
-// export interface CommandExecution {
-//     id: string;
-//     group: ServerGroup;
-//     host: Host;
-//     service: Service;
-//     command: Command;
-//     result: string;
-//     commandStatus: CommandStatus;
-//     serviceStatus: ServiceStatus;
-//     startDate: Date | null;
-//     endDate: Date | null;
-//     updatedAt: Date;
-// }
-//
-// export interface CommandResponse {
-//     stdout: string;
-//     stderr: string;
-//     code: number;
-// }
-//
-// export interface StatusCommandResponse extends CommandResponse{
-//     serviceStatus: ServiceStatus;
-//     commandStatus: CommandStatus;
-//     commandOutput: string;
-// }
-//
-// export interface User {
-//     displayName: string;
-//     username: string;
-//     password: string;
-//     roles: Role[];
-// }
-//
-// export enum Role {
-//     user = "user",
-//     admin = "admin",
-//     super = "super"
-// }
-//
-// export interface UserClaims {
-//     displayName: string;
-//     username: string;
-//     roles: Role[];
-// }
-//
-// export interface UserLoginResponse {
-//     userClaims: UserClaims;
-//     token: string;
-// }
 
+export const CarrierSetupRequestSchema = object({
+    carrier: string().defined()
+});
+
+export type CarrierSetupRequest = InferType<typeof CarrierSetupRequestSchema>;
+
+export const CarrierSetupResponseSchema = object({
+    carrier: string().defined(),
+    commandOutputResponses: array().of(object({
+        stdout: string().defined(),
+        stderr: string().defined(),
+        code: number().required(),
+    }))
+});
+
+export type CarrierSetupResponse = InferType<typeof CarrierSetupResponseSchema>;

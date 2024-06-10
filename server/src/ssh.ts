@@ -1,7 +1,8 @@
 import {NodeSSH} from 'node-ssh';
 import 'dotenv/config'
 import {InferType, object, string} from "yup";
-import {Command, UserClaims} from "./data/models";
+import { Client } from 'node-scp';
+import {Command, CommandResponse, UserClaims} from "./data/models";
 import {findCommand} from "./data";
 
 
@@ -14,13 +15,6 @@ export const SshCommandSchema = object({
 });
 
 export type TSshCommandRequest = InferType<typeof SshCommandSchema>;
-
-export const CarrierSetupSchema = object({
-
-});
-
-export type CarrierSetupRequest = InferType<typeof CarrierSetupSchema>;
-
 
 export interface ISshConfig {
     host: string;
@@ -42,7 +36,7 @@ const getServerConfig = async (hostName: string): Promise<ISshConfig> => {
     } as ISshConfig;
 }
 
-export const executeSshCommand = async (sshCommand: TSshCommandRequest, userClaims: UserClaims) => {
+export const executeSshCommand = async (sshCommand: TSshCommandRequest, userClaims: UserClaims): Promise<CommandResponse> => {
     const command = await findCommand(sshCommand, userClaims); // lookup the command.
     // @ts-ignore
     if (!Array.isArray(userClaims.roles) || !userClaims.roles.includes(command.role)) {
@@ -66,6 +60,31 @@ export const executeSshCommand = async (sshCommand: TSshCommandRequest, userClai
     };
 }
 
+
+
+
+async function test() {
+    try {
+        const client = await Client({
+            host: 'your host',
+            port: 22,
+            username: 'username',
+            password: 'password',
+            // privateKey: fs.readFileSync('./key.pem'),
+            // passphrase: 'your key passphrase',
+        })
+        await client.uploadFile(
+            './test.txt',
+            '/workspace/test.txt',
+            // options?: TransferOptions
+        )
+        // you can perform upload multiple times
+        await client.uploadFile('./test1.txt', '/workspace/test1.txt')
+        client.close() // remember to close connection after you finish
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 
 // const main = async () => {

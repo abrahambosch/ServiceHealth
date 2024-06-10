@@ -37,6 +37,7 @@ import {Typography} from "@rmwc/typography";
 
 import {IconButton} from '@rmwc/icon-button'
 import '@rmwc/icon-button/styles';
+import {CarrierSetup} from "./CarrierSetup";
 
 export const ServiceHealth = () => {
 
@@ -111,6 +112,10 @@ export const ServiceHealth = () => {
         setServerGroup({} as ServerGroup)
     }
 
+    const carrierSetupRequest = {
+        carrier: groupName
+    }
+
     return (
         <div className="ServiceAdmin">
             <TopAppBar fixed={true}>
@@ -145,6 +150,9 @@ export const ServiceHealth = () => {
                     <ServerGroupComponent serverGroup={serverGroup} setServerGroup={setServerGroup} />
                 </div>
             )}
+            <br/>
+            {carrierSetupRequest.carrier && <CarrierSetup carrierSetupRequest={carrierSetupRequest}/>}
+
         </div>
     );
 }

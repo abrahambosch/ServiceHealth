@@ -3,14 +3,16 @@ import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
 import path from 'path';
 import {getServerGroup, getServerGroups} from "./src/data";
-import {ServerGroup} from "./src/data/models";
+import {
+    ServerGroup,
+    CarrierSetupRequestSchema,
+    CarrierSetupRequest
+} from "./src/data/models";
 import bodyParser from "body-parser";
 import {
     executeSshCommand,
     TSshCommandRequest,
     SshCommandSchema,
-    CarrierSetupSchema,
-    CarrierSetupRequest
 } from "./src/ssh";
 import {auth, AuthenticatedRequest, authSuper, login, signUserClaims} from "./src/jwt";
 
@@ -100,22 +102,34 @@ app.post("/api/sshCommand", auth, async (req: TypedRequestBody<TSshCommandReques
 });
 
 
-app.post("/api/carrierSetup", authSuper, async (req: TypedRequestBody<CarrierSetupRequest>, res: Response): Promise<void> => {
-    console.log("got sshCommand request: ", req.body)
+app.post("/api/carrierSetup", auth, async (req: TypedRequestBody<CarrierSetupRequest>, res: Response): Promise<void> => {
+    console.log("got carrierSetup request: ", req.body);
 
-    // ssh command 1
+    try {
+        const carrierSetupRequest = await CarrierSetupRequestSchema.validate(req.body);
+        const userClaims = (req as AuthenticatedRequest).userClaims;
+        const response = {
+            carrier: carrierSetupRequest.carrier,
+            commandOutputResponses: [
+                {"code": 0, "stdout": "yeah!!!", "stderr": ""}
+            ]
+        };
 
-
-    // ssh command 2
-    // ssh command 3
-    // ssh command 4
-    // ssh command 5
-    // ssh command 6
-
-
-
-
-
+        res.json({
+            "success": true, datetime: new Date(), data: {
+                request: carrierSetupRequest,
+                response
+            }
+        });
+    } catch (e) {
+        console.log("sshCommand error", req.body, e);
+        res.json({
+            "success": false,
+            "datetime": new Date(),
+            "error": (e instanceof Error && "message" in e) ? e.message : e
+        });
+        return;
+    }
 });
 
 app.listen(port, () => {

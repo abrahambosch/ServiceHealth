@@ -12,7 +12,7 @@ import {
     Role,
     RoleValue,
     ServiceStatus,
-    UserLoginResponse, ServiceStatusValue
+    UserLoginResponse, ServiceStatusValue, CarrierSetupRequest, CarrierSetupResponseSchema, CarrierSetupResponse
 } from "./models";
 
 import {InferType, object, array, string, number,} from "yup";
@@ -124,6 +124,13 @@ const sshCommandResponseSchema = object({
     })
 });
 
+const carrierSetupResponseApiSchema = object({
+    data: object({
+        response: CarrierSetupResponseSchema
+    })
+});
+export type carrierSetupResponseApi = InferType<typeof carrierSetupResponseApiSchema>;
+
 export const sshCommand = async (
     group: ServerGroup,
     host: Host,
@@ -176,6 +183,27 @@ export const sshCommand = async (
             code: 1
         }
     }
+    //return JSON.stringify({status: "ok", stdout: "", stderr: "", code: 0});
+};
+
+
+export const carrierSetup = async (
+    carrierSetupRequest: CarrierSetupRequest
+): Promise<CarrierSetupResponse> => {
+    const response = await fetch(apiUrl("/api/carrierSetup"), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getAuthToken()}`
+        },
+        body: JSON.stringify(carrierSetupRequest)
+    });
+    const data = await response.json();
+    console.log("ssh command response data: ", data);
+
+    const carrierSetupResponse = await carrierSetupResponseApiSchema.validate(data);
+    return carrierSetupResponse.data.response;
+
     //return JSON.stringify({status: "ok", stdout: "", stderr: "", code: 0});
 };
 
