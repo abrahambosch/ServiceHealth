@@ -23,7 +23,7 @@ const port = process.env.PORT || 3000;
 //app.use(bodyParser.json({type: 'application/json'}))
 app.use(bodyParser.json())
 
-app.use('/', express.static(path.join(__dirname, '../..', 'build')));
+app.use('/', express.static(path.join(__dirname, '../..', 'client', 'build')));
 
 app.get("/api", (req: Request, res: Response): void => {
     res.json({"success": true, datetime: new Date()});
