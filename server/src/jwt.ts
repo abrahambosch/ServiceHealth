@@ -1,12 +1,13 @@
 import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import {User, UserClaims, UserLoginResponse} from "./data/models";
+import {User, UserClaims, UserLoginResponse} from "./models";
 import {findUser} from "./data";
 import bcrypt from 'bcrypt';
+import {secretKey} from "./config";
 
 export const saltRounds = 8
 
-export const SECRET_KEY: Secret = String(process.env.SECRET_KEY);
+export const SECRET_KEY: Secret = String(secretKey);
 
 export interface AuthenticatedRequest extends Request {
     userClaims: UserClaims;

@@ -10,6 +10,6 @@ COPY . .
 
 RUN cd /app/client && rm -rf /app/client/build && npm run build
 RUN cd /app/server && rm -rf node_modules && npm i && rm -rf /app/server/dist && npm run build
-RUN cd /app/server && cp .env dist/ && cp users.json dist/ && cp config.json dist/
+#RUN cd /app/server && cp .env dist/ && cp users.json dist/ && cp config.json dist/
 
 CMD [ "node", "./server/dist/index.js" ]

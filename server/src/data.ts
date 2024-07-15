@@ -14,14 +14,16 @@ import {
     ServiceStatusValue,
     ServiceTypeValue,
     ServerGroupSchema, UserSchema
-} from "./data/models";
+} from "./models";
 import bcrypt from 'bcrypt';
 import {saltRounds} from "./jwt";
 import {object, array, string, number, InferType} from 'yup'
 import {TSshCommandRequest} from "./ssh";
 import * as fs from 'fs';
 import { join } from 'path'
-import {userFile, configFile} from './config'
+import {userFile, configFile} from './config';
+import configJson from "./data/config.json";
+import userJson from "./data/users.json";
 
 
 export const UserFileSchema = array().of(UserSchema).required();

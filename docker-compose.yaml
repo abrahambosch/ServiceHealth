@@ -8,5 +8,8 @@ services:
 #      - ./:/app
 #      - /app/node_modules
     ports:
-      - 3000:3000
+      - 3001:3001
 #    command: npm run dev
+# https://docs.docker.com/engine/swarm/secrets/
+#    secrets:
+#      - ssh_password

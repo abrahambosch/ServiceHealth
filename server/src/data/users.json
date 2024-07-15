@@ -1,0 +1,14 @@
+[
+  {
+    "displayName": "Abe Bosch",
+    "username": "boscha1",
+    "password": "$2b$08$uT8uwXhYbSRzqpYqp9LzbOzRSPp1Q1Hgj1FwmQ/S28MLH2czyMu8K",
+    "roles": ["user", "admin", "super"]
+  },
+  {
+    "displayName": "PDC User",
+    "username": "pdc",
+    "password": "$2b$08$uT8uwXhYbSRzqpYqp9LzbOzRSPp1Q1Hgj1FwmQ/S28MLH2czyMu8K",
+    "roles": ["user"]
+  }
+]

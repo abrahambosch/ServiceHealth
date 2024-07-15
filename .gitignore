@@ -2,9 +2,9 @@
 .env
 
 
-server/config.json
-server/users.json
-server/.env
+#server/src/data/config.json
+#server/src/data/users.json
+server/src/.env
 server/node_modules
 server/dist
 

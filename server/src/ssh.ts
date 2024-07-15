@@ -2,8 +2,10 @@ import {NodeSSH} from 'node-ssh';
 import 'dotenv/config'
 import {InferType, object, string} from "yup";
 import { Client } from 'node-scp';
-import {Command, CommandResponse, UserClaims} from "./data/models";
+import {Command, CommandResponse, UserClaims} from "./models";
 import {findCommand} from "./data";
+import fs from "fs";
+import {configFile} from "./config";
 
 
 export const SshCommandSchema = object({
@@ -25,10 +27,17 @@ export interface ISshConfig {
 }
 
 const getServerConfig = async (hostName: string): Promise<ISshConfig> => {
+    let password = "";
+    if (process.env?.SSH_PASSWORD) {
+        password = process.env?.SSH_PASSWORD
+    }
+    if (process.env?.SSH_PASSWORD_FILE) {
+        password = fs.readFileSync(process.env.SSH_PASSWORD_FILE, 'utf-8');
+    }
     return {
         host: "localhost",
         username: process.env.SSH_USERNAME ||"jenkins",
-        password: process.env.SSH_PASSWORD || "jenkins",
+        password: password || "jenkins",
         port: process.env.SSH_PORT || 2222,
         readyTimeout: 5000,
         //privateKey: process.env.SSH_privatekey,

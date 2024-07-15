@@ -1,0 +1,278 @@
+[
+  {
+    "name": "ANA",
+    "hosts": [
+      {
+        "name": "ana-portal-lax-gcs01.pacwisp.net",
+        "services": [
+          {
+            "name": "Wisp Core",
+            "serviceType": "wispCore",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/apache_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/apache_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "Wisp Job Queues",
+            "serviceType": "supervisor",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/supervisor_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/supervisor_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "Cron",
+            "serviceType": "cron",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/cron_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/cron_restart",
+                "role": "admin"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ana-radius-lax-gcs01.pacwisp.net",
+        "services": [
+          {
+            "name": "RAS",
+            "serviceType": "ras",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/ras_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/ras_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "Radius",
+            "serviceType": "radius",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/radius_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/radius_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "MySQL",
+            "serviceType": "mysql",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_restart",
+                "role": "admin"
+              },
+              {
+                "name": "Stop",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_stop",
+                "role": "admin"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SIA",
+    "hosts": [
+      {
+        "name": "sia-portal-lax-gcs01.pacwisp.net",
+        "services": [
+          {
+            "name": "Wisp Core",
+            "serviceType": "wispCore",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/apache_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/apache_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "Wisp Job Queues",
+            "serviceType": "supervisor",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/supervisor_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/supervisor_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "Cron",
+            "serviceType": "cron",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/cron_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/cron_restart",
+                "role": "admin"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "sia-radius-lax-gcs01.pacwisp.net",
+        "services": [
+          {
+            "name": "RAS",
+            "serviceType": "ras",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/ras_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/ras_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "Radius",
+            "serviceType": "radius",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/radius_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/radius_restart",
+                "role": "admin"
+              }
+            ]
+          },
+          {
+            "name": "MySQL",
+            "serviceType": "mysql",
+            "status": "unknown",
+            "commands": [
+              {
+                "name": "Get Status",
+                "type": "statusCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_status",
+                "role": "user"
+              },
+              {
+                "name": "Restart",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_restart",
+                "role": "admin"
+              },
+              {
+                "name": "Stop",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_stop",
+                "role": "admin"
+              },
+              {
+                "name": "Foo",
+                "type": "restartCommand",
+                "command": "/opt/admin/jenkins/bin/mysql_foo",
+                "role": "admin"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

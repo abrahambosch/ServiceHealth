@@ -150,8 +150,8 @@ export const ServiceHealth = () => {
                     <ServerGroupComponent serverGroup={serverGroup} setServerGroup={setServerGroup} />
                 </div>
             )}
-            <br/>
-            {carrierSetupRequest.carrier && <CarrierSetup carrierSetupRequest={carrierSetupRequest}/>}
+            {/*<br/>*/}
+            {/*{carrierSetupRequest.carrier && <CarrierSetup carrierSetupRequest={carrierSetupRequest}/>}*/}
 
         </div>
     );

@@ -103,6 +103,7 @@ export type ServiceStatus = InferType<typeof ServiceStatusSchema>;
 
 export enum ServiceTypeValue {
     wispCore = "wispCore",
+    apache = "apache",
     portalUi = "portalUi",
     ras = "ras",
     radius = "radius",
@@ -113,6 +114,7 @@ export enum ServiceTypeValue {
 }
 export const ServiceTypeSchema = string().oneOf([
     'wispCore',
+    'apache',
     'portalUi',
     'ras',
     'radius',

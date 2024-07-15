@@ -1,25 +1,30 @@
 
 import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
-import path from 'path';
-import {getServerGroup, getServerGroups} from "./src/data";
+import path, {join} from 'path';
+
+//dotenv.config({path: join(__dirname, "..", ".env")});
+dotenv.config();
+
+import {getServerGroup, getServerGroups} from "./data";
 import {
     ServerGroup,
     CarrierSetupRequestSchema,
     CarrierSetupRequest
-} from "./src/data/models";
+} from "./models";
 import bodyParser from "body-parser";
 import {
     executeSshCommand,
     TSshCommandRequest,
     SshCommandSchema,
-} from "./src/ssh";
-import {auth, AuthenticatedRequest, authSuper, login, signUserClaims} from "./src/jwt";
+} from "./ssh";
+import {auth, AuthenticatedRequest, authSuper, login, signUserClaims} from "./jwt";
+import {PORT} from "./config";
 
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = PORT;
 //app.use(bodyParser.json({type: 'application/json'}))
 app.use(bodyParser.json())
 
